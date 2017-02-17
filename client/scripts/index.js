@@ -1,53 +1,26 @@
-var React = require('react'),
-	Router = require('react-router');
+import React from 'react';
+import ReactDOM from 'react-dom';
+//import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+//import createHistory from 'history'
+import App from './App';
+import Departures from './Departures';
 
-var Header = React.createClass({
-	render: function() {
-		return (
-			<div className="page-header">
-				<h1>MBTA Commuter Rail Departures</h1>
-			</div>
-		);
-	}
-});
 
-var PageNav = React.createClass({
-	render: function() {
-		return (
-			<div className="nav">
-				<Router.Link to="home">Home</Router.Link>
-				&nbsp; | &nbsp;
-				<Router.Link to="about">About</Router.Link>
-			</div>
-		);
-	}
-});
+//const history = createHistory({
+//    basename: '/mbta'
+//});
 
-var App = React.createClass({
-	render: function() {
-		return (
-			<div className="container">
-				<Header />
-				<PageNav />
-				<Router.RouteHandler/>
-			</div>
-		);
-	}
-});
+// Render the main component into the dom
+let rootApp = document.getElementById('app');
 
-var routes = {
-	Home: require('../routes/Home'),
-	About: require('../routes/About')
-};
-
-var routes = (
-	<Router.Route name="app" path="/" handler={App}>
-		<Router.Route name="home" path="/" handler={routes.Home}/>
-		<Router.Route name="about" path="/about" handler={routes.About}/>
-		<Router.DefaultRoute handler={routes.Home}/>
-	</Router.Route>
-);
-
-Router.run(routes, Router.HistoryLocation, function (Handler) {
-	React.render(<Handler/>, document.body);
-});
+//ReactDOM.render(<App />, rootApp);
+ReactDOM.render((
+    <Router history={browserHistory}>
+        <Route path="/" component={App}>
+            <IndexRoute component={Departures} />
+        </Route>
+        <Route path="/:station" component={Departures}>
+        </Route>
+    </Router>
+), rootApp);

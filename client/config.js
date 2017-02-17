@@ -16,8 +16,16 @@ module.exports = {
 		bundle: 'common.js',
 		packages: [
 			'react',
-			'react/addons',
-			'react-router'
+			//'react/addons',
+			'react-dom',
+			'react-router',
+			"bootstrap",
+		    "csv",
+		    //"font-awesome",
+    		"jquery",
+		    "lodash",
+    		"moment-timezone",
+    		"whatwg-fetch"
 		]
 	}
 };
