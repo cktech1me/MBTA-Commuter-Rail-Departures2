@@ -94,7 +94,8 @@ class Departures extends React.Component {
 
     componentWillMount() {
         // console.log('Departures:componentDidMount');
-        this.fetchData();
+        this.props.updateState({fetchFn: this.fetchData.bind(this)});
+        //this.fetchData();
     }
 
     componentDidMount() {

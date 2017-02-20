@@ -1,3 +1,4 @@
+var http = require('http');
 var express = require('express');
 var babelify = require('babelify');
 var browserify = require('browserify-middleware');
@@ -10,7 +11,7 @@ var app = express();
 
 // use nunjucks to process view templates in express
 nunjucks.configure('server/templates/views', {
-    express: app
+	express: app
 });
 
 // less will automatically compile matching requests for .css files
@@ -37,14 +38,27 @@ app.use('/js', browserify('./client/scripts', {
 	set up any additional server routes (api endpoints, static pages, etc.)
 	here before the catch-all route for index.html below.
 */
+app.get("/departures", function (req, res) {
+	var proxyUrl = 'http://developer.mbta.com/lib/gtrtfs/Departures.csv';
+	var request = require('request');
+	request.get(proxyUrl)
+	.on('error', function(err) {
+	    console.log(err)
+	})
+	.pipe(res);
+});
 
-app.get('*', function(req, res) {
+app.get('*', function (req, res) {
 	// this route will respond to all requests with the contents of your index
 	// template. Doing this allows react-router to render the view in the app.
-    res.render('index.html');
+	res.render('index.html');
 });
 
 // start the server
-var server = app.listen(process.env.PORT || 3000, function() {
+//var server = app.listen(process.env.PORT || 3000, function() {
+//	console.log('\nServer ready on port %d\n', server.address().port);
+//});
+
+var server = http.createServer(app).listen(process.env.PORT || 3000, function () {
 	console.log('\nServer ready on port %d\n', server.address().port);
 });

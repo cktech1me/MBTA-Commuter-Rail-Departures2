@@ -7,7 +7,8 @@ require('whatwg-fetch');
 //import Faker from 'faker';
 const urls = {
     //departuresCVS: 'http://developer.mbta.com/lib/gtrtfs/Departures.csv'
-    departuresCVS: '/Departures.csv'
+    //departuresCVS: '/Departures.csv'
+    departuresCVS: '/departures'
 };
 
 function csvParser(csvData, callback) {

@@ -11,14 +11,16 @@ class App extends React.Component {
       prevLocale: moment().locale(),
       locale: 'en',
       momentTimezone: 'America/New_York',
-      momentCurrentTimeFormat: 'dddd, MMMM Do YYYY, h:mm:ss a'
+      momentCurrentTimeFormat: 'dddd, MMMM Do YYYY, h:mm:ss a',
+      timeinterval: undefined,
+      fetchFn: undefined
     }
   }
 
   componentWillMount() {
     // console.log('App:componentWillMount');
     this.setState({
-      timeinterval: setInterval(this.renderCurrentTime.bind(this), 1000)
+      timeinterval: setInterval(this.renderInterval.bind(this), 1000)
     });
   }
 
@@ -43,15 +45,22 @@ class App extends React.Component {
   updateState(newState) {
     let payload = {};
 
+    if (newState['fetchFn']) {
+      payload['fetchFn'] = newState['fetchFn'];
+    }
+
     if (!_.isEmpty(payload)) {
       this.setState(payload);
     }
   }
 
-  renderCurrentTime() {
+  renderInterval() {
     let timeString = this.formatTime(Date.now());
     if (this.state.$currentTime) {
       this.state.$currentTime.text(timeString);
+    }
+    if (this.state.fetchFn) {
+      this.state.fetchFn();
     }
   }
 
