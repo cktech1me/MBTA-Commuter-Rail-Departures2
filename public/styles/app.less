@@ -35,33 +35,33 @@ body {
 
 #app #departureBoard table.table-bordered.table-striped tbody tr {
     td.default {
-        .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
-        //background-color: #fff;
-        //border-color: #ccc;
+        //.button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
+        //background-color: @btn-default-bg;
+        //border-color: @btn-default-border;
     }
     td.info {
         .button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
-        //background-color: #5bc0de;
-        //border-color: #46b8da;
+        background-color: @btn-info-bg;
+        //border-color: @btn-info-border;
     }
     td.primary {
-        .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
-        //background-color: #337ab7;
-        //border-color: #2e6da4;
+        //.button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+        background-color: @btn-primary-bg;
+        //border-color: @btn-primary-border;
     }
     td.warning {
-        .button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
-        //background-color: #f0ad4e;
-        //border-color: #eea236;
+        //.button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
+        background-color: @btn-warning-bg;
+        // border-color: @btn-warning-border;
     }
     td.danger {
-        .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
-        //background-color: #d9534f;
-        //border-color: #d43f3a;
+        //.button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
+        background-color: @btn-danger-bg;
+        //border-color: @btn-danger-border;
     }
     td.success {
-        .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
-        //background-color: #5cb85c;
-        //border-color: #4cae4c;
+        //.button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+        background-color: @btn-success-bg;
+        //border-color: @btn-success-border;
     }      
 }

@@ -64,14 +64,19 @@ class Departures extends React.Component {
                 if (diff1.length != diff2.length || diff2.length != 0) {
                     payload['names'] = newState['names'];
                 }
+            } else {
+                configureDisableColumns = configureDisableColumns.concat(that.state.names);
             }
         }
 
         function checkDepartures() {
-            if (_.has(newState, 'departures')) {
+            if (_.has(newState, 'departures') && newState['departures'].length > 0) {
                 let timeStamp = newState['departures'][0][columnNameIndexMapping['TimeStamp']];
                 payload['timeStamp'] = parseInt(timeStamp);
                 payload['departures'] = newState['departures'];
+            } else {
+                payload['timeStamp'] = 0;
+                payload['departures'] = [];
             }
         }
 
