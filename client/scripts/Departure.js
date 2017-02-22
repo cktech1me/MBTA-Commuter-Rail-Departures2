@@ -28,6 +28,10 @@ class Departure extends React.Component {
         return true;
     }
 
+    getClassName(statusString) {
+        return Departure.colorClasses[statusString] ? Departure.colorClasses[statusString] : '';
+    }
+
     render() {
         let that = this;
         let indexColumnNameMapping = _.invert(this.props.columnNameIndexMapping);
@@ -51,6 +55,8 @@ class Departure extends React.Component {
                         let finalTime = scheduledTime.clone().add(delay, 'milliseconds');
                         return <td key={key}>{finalTime.from(scheduledTime)} </td>
                     }
+                } else if (indexColumnNameMapping[index] == 'Status') {
+                    return <td className={this.getClassName(value)} key={key}>{value}</td>
                 }
                 return <td key={key}>{value}</td>
             });
@@ -93,4 +99,24 @@ Departure.propTypes = {
     'Status': React.PropTypes.string
 };
 
+Departure.colorClasses = {
+        'On Time': 'default',
+        'Now Boarding': 'default',
+        'All Aboard': 'default',        
+
+        'Delayed': 'warning',
+        'Cancelled': 'danger',
+
+        'Info to follow': 'default',
+        'TBD': 'default',
+        'Late': 'warning',
+
+        'Arriving': 'info',
+        'Arrived': 'info',
+        'Departing soon': 'primary',
+        'Departed': 'success',
+
+        'Hold': 'warning',
+        'End': 'default'
+    },
 module.exports = Departure;
