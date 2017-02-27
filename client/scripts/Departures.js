@@ -42,8 +42,8 @@ class Departures extends React.Component {
         }
 
         let indexesToBeSkipped = [];
-        function configureDisableColumns() {
-            _.forEach(this.props.columnsToBeSkipped, (column, index) => {
+        function configureDisableColumns(columnsToBeSkipped) {
+            _.forEach(columnsToBeSkipped ? columnsToBeSkipped : this.props.columnsToBeSkipped, (column, index) => {
                 indexesToBeSkipped.push(columnNameIndexMapping[column]);
             });
 
@@ -65,7 +65,7 @@ class Departures extends React.Component {
                     payload['names'] = newState['names'];
                 }
             }/* else {
-                configureDisableColumns = configureDisableColumns.concat(that.state.names);
+                configureDisableColumns(that.state.names);
             }*/
         }
 
@@ -74,10 +74,10 @@ class Departures extends React.Component {
                 let timeStamp = newState['departures'][0][columnNameIndexMapping['TimeStamp']];
                 payload['timeStamp'] = parseInt(timeStamp);
                 payload['departures'] = newState['departures'];
-            } else {
+            }/* else {
                 payload['timeStamp'] = 0;
                 payload['departures'] = [];
-            }
+            } */
         }
 
         if (_.has(newState, 'station')) {
