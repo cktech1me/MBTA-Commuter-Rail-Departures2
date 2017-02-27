@@ -58,7 +58,7 @@ class Departures extends React.Component {
             if (_.has(newState, 'names')) {
                 configureColumnNameIndexMapping.call(that);
                 configureDisableColumns.call(this);
-                
+
                 let diff1 = _.difference(this.state['names'], newState['names']);
                 let diff2 = _.difference(newState['names'], this.state['names']);
                 if (diff1.length != diff2.length || diff2.length != 0) {
@@ -99,7 +99,7 @@ class Departures extends React.Component {
 
     componentWillMount() {
         // console.log('Departures:componentDidMount');
-        this.props.updateState({fetchFn: this.fetchData.bind(this)});
+        this.props.updateState({ fetchFn: this.fetchData.bind(this) });
         //this.fetchData();
     }
 
@@ -132,17 +132,19 @@ class Departures extends React.Component {
     formatTime(timeStamp) {
         return moment.tz(timeStamp, this.props.momentTimezone).format(this.props.momentCurrentTimeFormat);
     }
-    
+
     render() {
         let that = this;
 
         function renderHeadCells() {
-            return this.state.names.map((name, index, names) => {
-                if (_.includes(that.state.indexesToBeSkipped, index)) {
-                    return null;
-                }
-                return <td key={index}>{name}</td>
-            });
+            if (this.state.names) {
+                return this.state.names.map((name, index, names) => {
+                    if (_.includes(that.state.indexesToBeSkipped, index)) {
+                        return null;
+                    }
+                    return <td key={index}>{name}</td>
+                });
+            }
         }
 
         function renderBodyRows() {
