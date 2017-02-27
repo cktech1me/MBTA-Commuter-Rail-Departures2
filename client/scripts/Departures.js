@@ -64,9 +64,9 @@ class Departures extends React.Component {
                 if (diff1.length != diff2.length || diff2.length != 0) {
                     payload['names'] = newState['names'];
                 }
-            } else {
+            }/* else {
                 configureDisableColumns = configureDisableColumns.concat(that.state.names);
-            }
+            }*/
         }
 
         function checkDepartures() {
