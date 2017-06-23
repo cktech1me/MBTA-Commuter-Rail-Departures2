@@ -1,5 +1,5 @@
 # MBTA-Commuter-Rail-Departures2
-This is lighter MBTA-Commuter-Rail-Departures.  It use only React.js and Express... No Webpack.....
+This is a simple test webpage of ther MBTA-Commuter-Rail-Departures.  It use only React.js and Express... No Webpack.....
 
 Instructions:
 1) Download or clone the repository to your local computer.
